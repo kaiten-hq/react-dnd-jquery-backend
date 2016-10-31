@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yahoo/react-dnd-touch-backend.git"
+    "url": "git+https://github.com/kaiten-hq/react-dnd-jquery-backend.git"
   },
   "keywords": [
     "react",
@@ -20,11 +20,10 @@
   "author": "Vladimir Rybakov <vladimir.rybakov@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yahoo/react-dnd-touch-backend/issues"
+    "url": "https://github.com/kaiten-hq/react-dnd-jquery-backend/issues"
   },
-  "homepage": "https://github.com/yahoo/react-dnd-touch-backend",
+  "homepage": "https://github.com/kaiten-hq/react-dnd-jquery-backend",
   "dependencies": {
-    "jquery": "^3.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
