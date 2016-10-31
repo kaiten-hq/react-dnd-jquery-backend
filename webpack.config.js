@@ -5,7 +5,8 @@ module.exports = {
     path: __dirname,
     filename: 'dist/index.js',
     libraryTarget: 'umd',
-    library: 'react-dnd-jquery-backend'
+    library: 'react-dnd-jquery-backend',
+    umdNamedDefine: true
   },
 
   externals: {
@@ -17,10 +18,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015', 'stage-0']
-        }
+        loader: 'babel'
       }
     ]
   }
