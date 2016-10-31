@@ -148,6 +148,8 @@ export class JQueryBackend {
 }
 
 export default function createJQueryBackend (jQuery, optionsOrManager = {}) {
+    $ = jQuery;
+
     const jQueryBackendFactory = function (manager) {
         return new JQueryBackend(manager, optionsOrManager);
     };

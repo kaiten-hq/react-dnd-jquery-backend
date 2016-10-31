@@ -249,6 +249,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	function createJQueryBackend(jQuery) {
 	    var optionsOrManager = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
+	    $ = jQuery;
+
 	    var jQueryBackendFactory = function jQueryBackendFactory(manager) {
 	        return new JQueryBackend(manager, optionsOrManager);
 	    };
