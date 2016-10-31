@@ -1,5 +1,7 @@
 'use strict';
 
+let $ = null;
+
 function getEventClientOffset (e) {
     return {
         x: e.clientX,
@@ -44,11 +46,8 @@ export class JQueryBackend {
             throw new Error('Cannot have two jQuery backends at the same time.');
         }
 
-        // The global jQuery used. Will fix it later
-        this.$ = window.jQuery;
-
-        if (!this.$) {
-          throw new Error('jQuery not found');
+        if (!$) {
+            throw new Error('jQuery not found.');
         }
 
         this.constructor.isSetUp = true;
@@ -65,7 +64,7 @@ export class JQueryBackend {
 
     connectDragSource (sourceId, node, options = {}) {
         if (node) {
-            this.$(node).draggable({
+            $(node).draggable({
                 greedy: true,
 
                 helper: 'clone',
@@ -118,7 +117,7 @@ export class JQueryBackend {
 
     connectDropTarget (targetId, node, options) {
         if (node) {
-            this.$(node).droppable({
+            $(node).droppable({
                 over: (event, ui) => {
                     this.hoveredTargets.push(targetId);
 
@@ -148,7 +147,7 @@ export class JQueryBackend {
     }
 }
 
-export default function createJQueryBackend (optionsOrManager = {}) {
+export default function createJQueryBackend (jQuery, optionsOrManager = {}) {
     const jQueryBackendFactory = function (manager) {
         return new JQueryBackend(manager, optionsOrManager);
     };

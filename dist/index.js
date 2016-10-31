@@ -73,6 +73,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var $ = null;
+
 	function getEventClientOffset(e) {
 	    return {
 	        x: e.clientX,
@@ -129,11 +131,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                throw new Error('Cannot have two jQuery backends at the same time.');
 	            }
 
-	            // The global jQuery used. Will fix it later
-	            this.$ = window.jQuery;
-
-	            if (!this.$) {
-	                throw new Error('jQuery not found');
+	            if (!$) {
+	                throw new Error('jQuery not found.');
 	            }
 
 	            this.constructor.isSetUp = true;
@@ -156,7 +155,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
 	            if (node) {
-	                this.$(node).draggable({
+	                $(node).draggable({
 	                    greedy: true,
 
 	                    helper: 'clone',
@@ -217,7 +216,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var _this4 = this;
 
 	            if (node) {
-	                this.$(node).droppable({
+	                $(node).droppable({
 	                    over: function over(event, ui) {
 	                        _this4.hoveredTargets.push(targetId);
 
@@ -247,8 +246,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return JQueryBackend;
 	}();
 
-	function createJQueryBackend() {
-	    var optionsOrManager = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	function createJQueryBackend(jQuery) {
+	    var optionsOrManager = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	    var jQueryBackendFactory = function jQueryBackendFactory(manager) {
 	        return new JQueryBackend(manager, optionsOrManager);
