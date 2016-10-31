@@ -24,11 +24,13 @@
   },
   "homepage": "https://github.com/kaiten-hq/react-dnd-jquery-backend",
   "dependencies": {
+    "babel-runtime": "^6.18.0"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",

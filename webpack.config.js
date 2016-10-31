@@ -9,9 +9,9 @@ module.exports = {
     umdNamedDefine: true
   },
 
-  externals: {
-    "jquery": "jQuery"
-  },
+  // externals: {
+  //   "jquery": "jquery"
+  // },
 
   module: {
     loaders: [
