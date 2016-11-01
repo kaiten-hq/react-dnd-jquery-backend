@@ -221,9 +221,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                    over: function over(event, ui) {
 	                        _this4.hoveredTargets.push(targetId);
-
-	                        console.log();
-
 	                        _this4.actions.hover(_this4.filterTargets(), {
 	                            clientOffset: getEventClientOffset(event.originalEvent)
 	                        });
