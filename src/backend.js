@@ -118,8 +118,12 @@ export class JQueryBackend {
     connectDropTarget (targetId, node, options) {
         if (node) {
             $(node).droppable({
+                tolerance: 'pointer',
+
                 over: (event, ui) => {
                     this.hoveredTargets.push(targetId);
+
+                    console.log();
 
                     this.actions.hover(this.filterTargets(), {
                         clientOffset: getEventClientOffset(event.originalEvent)
