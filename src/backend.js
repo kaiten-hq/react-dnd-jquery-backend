@@ -92,8 +92,7 @@ export class JQueryBackend {
                     this.actions.endDrag();
                 },
 
-                drag: (event, ui) => {
-                }
+                ...options.draggable
             });
 
             this.sourceNodes[sourceId] = {node};
