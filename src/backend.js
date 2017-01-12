@@ -33,8 +33,6 @@ export class JQueryBackend {
         this.sourceNodes = {};
         this.hoveredTargets = [];
         this.targetNodes = {};
-
-        this._mouseClientOffset = {};
     }
 
     setup () {
@@ -59,7 +57,6 @@ export class JQueryBackend {
         }
 
         this.constructor.isSetUp = false;
-        this._mouseClientOffset = {};
     }
 
     connectDragSource (sourceId, node, options = {}) {
@@ -77,7 +74,7 @@ export class JQueryBackend {
                     }
 
                     this.actions.beginDrag([sourceId], {
-                        clientOffset: this._mouseClientOffset,
+                        clientOffset: getEventClientOffset(event.originalEvent),
                         getSourceClientOffset: this.getSourceClientOffset,
                         publishSource: false
                     });
@@ -86,6 +83,10 @@ export class JQueryBackend {
                 },
 
                 stop: (event, ui) => {
+                    this.actions.hover(this.filterTargets(), {
+                        clientOffset: getEventClientOffset(event.originalEvent)
+                    });
+
                     this.hoveredTargets = [];
 
                     this.actions.drop();
@@ -114,7 +115,7 @@ export class JQueryBackend {
         return this.hoveredTargets.filter(t => this.targetNodes[t].options.uiOrder === maxOrder);
     }
 
-    connectDropTarget (targetId, node, options) {
+    connectDropTarget (targetId, node, options = {}) {
         if (node) {
             $(node).droppable({
                 tolerance: 'pointer',

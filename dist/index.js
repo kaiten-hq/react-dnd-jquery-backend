@@ -120,8 +120,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.sourceNodes = {};
 	        this.hoveredTargets = [];
 	        this.targetNodes = {};
-
-	        this._mouseClientOffset = {};
 	    }
 
 	    (0, _createClass3.default)(JQueryBackend, [{
@@ -149,7 +147,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 
 	            this.constructor.isSetUp = false;
-	            this._mouseClientOffset = {};
 	        }
 	    }, {
 	        key: 'connectDragSource',
@@ -172,7 +169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        }
 
 	                        _this2.actions.beginDrag([sourceId], {
-	                            clientOffset: _this2._mouseClientOffset,
+	                            clientOffset: getEventClientOffset(event.originalEvent),
 	                            getSourceClientOffset: _this2.getSourceClientOffset,
 	                            publishSource: false
 	                        });
@@ -181,13 +178,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    },
 
 	                    stop: function stop(event, ui) {
+	                        _this2.actions.hover(_this2.filterTargets(), {
+	                            clientOffset: getEventClientOffset(event.originalEvent)
+	                        });
+
 	                        _this2.hoveredTargets = [];
 
 	                        _this2.actions.drop();
 	                        _this2.actions.endDrag();
-	                    },
-
-	                    drag: function drag(event, ui) {}
+	                    }
 
 	                }, options.draggable));
 
@@ -217,8 +216,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }, {
 	        key: 'connectDropTarget',
-	        value: function connectDropTarget(targetId, node, options) {
+	        value: function connectDropTarget(targetId, node) {
 	            var _this4 = this;
+
+	            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
 	            if (node) {
 	                $(node).droppable({
