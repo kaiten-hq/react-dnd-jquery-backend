@@ -27,7 +27,7 @@ function getNodeClientOffset (node) {
 export class JQueryBackend {
     constructor (manager, options = {}) {
         this.actions = manager.getActions();
-        // this.monitor = manager.getMonitor();
+        this.monitor = manager.getMonitor();
         // this.registry = manager.getRegistry();
 
         this.sourceNodes = {};
@@ -86,6 +86,10 @@ export class JQueryBackend {
                     this.actions.hover(this.filterTargets(), {
                         clientOffset: getEventClientOffset(event.originalEvent)
                     });
+
+                    if (typeof(options.onStop) === 'function') {
+                        options.onStop(event, ui, this.monitor);
+                    }
 
                     this.hoveredTargets = [];
 

@@ -114,7 +114,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 
 	        this.actions = manager.getActions();
-	        // this.monitor = manager.getMonitor();
+	        this.monitor = manager.getMonitor();
 	        // this.registry = manager.getRegistry();
 
 	        this.sourceNodes = {};
@@ -181,6 +181,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _this2.actions.hover(_this2.filterTargets(), {
 	                            clientOffset: getEventClientOffset(event.originalEvent)
 	                        });
+
+	                        if (typeof options.onStop === 'function') {
+	                            options.onStop(event, ui, _this2.monitor);
+	                        }
 
 	                        _this2.hoveredTargets = [];
 
