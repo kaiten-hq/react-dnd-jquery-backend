@@ -137,7 +137,9 @@ export class JQueryBackend {
                     this.actions.hover(this.filterTargets(), {
                         clientOffset: getEventClientOffset(event.originalEvent)
                     });
-                }
+                },
+
+                ...options.droppable
             })
 
             this.targetNodes[targetId] = {node, options};

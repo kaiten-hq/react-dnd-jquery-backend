@@ -226,7 +226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
 	            if (node) {
-	                $(node).droppable({
+	                $(node).droppable((0, _extends3.default)({
 	                    tolerance: 'pointer',
 
 	                    over: function over(event, ui) {
@@ -245,7 +245,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            clientOffset: getEventClientOffset(event.originalEvent)
 	                        });
 	                    }
-	                });
+
+	                }, options.droppable));
 
 	                this.targetNodes[targetId] = { node: node, options: options };
 	                return function () {
