@@ -211,11 +211,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var _this3 = this;
 
 	            var maxOrder = Math.max.apply(null, this.hoveredTargets.map(function (t) {
-	                return _this3.targetNodes[t].options.uiOrder || 0;
+	                return _this3.targetNodes[t] && _this3.targetNodes[t].options.uiOrder || 0;
 	            }));
 
 	            return this.hoveredTargets.filter(function (t) {
-	                return maxOrder === 0 || _this3.targetNodes[t].options.uiOrder === maxOrder;
+	                return maxOrder === 0 || _this3.targetNodes[t] && _this3.targetNodes[t].options.uiOrder === maxOrder;
 	            });
 	        }
 	    }, {

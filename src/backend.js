@@ -113,10 +113,12 @@ export class JQueryBackend {
 
     filterTargets () {
         const maxOrder = Math.max.apply(
-            null, this.hoveredTargets.map(t => this.targetNodes[t].options.uiOrder || 0)
+            null, this.hoveredTargets.map(t => this.targetNodes[t] && this.targetNodes[t].options.uiOrder || 0)
         );
 
-        return this.hoveredTargets.filter(t => maxOrder === 0 || this.targetNodes[t].options.uiOrder === maxOrder);
+        return this.hoveredTargets.filter(t =>
+          maxOrder === 0 || (this.targetNodes[t] && this.targetNodes[t].options.uiOrder === maxOrder)
+        );
     }
 
     connectDropTarget (targetId, node, options = {}) {
